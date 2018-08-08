@@ -2,6 +2,8 @@ package com.zxy.mvn.service.impl;
 
 import com.zxy.mvn.dataobject.OrderDetail;
 import com.zxy.mvn.dto.OrderDTO;
+import com.zxy.mvn.enums.OrderStatusEnum;
+import com.zxy.mvn.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,14 +77,24 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void pay() {
-    }
-
-    @Test
+    @Transactional
     public void cancle() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancle(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISH.getCode(), result.getOrderStatus());
+    }
+
+    @Test
+    public void pay() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.pay(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }

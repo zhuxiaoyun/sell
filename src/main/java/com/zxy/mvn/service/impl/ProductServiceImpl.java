@@ -43,6 +43,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList) {
+            Product product = productRepository.findOne(cartDTO.getProductId());
+            if (product == null) {
+                throw new MvnException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            Integer result = product.getProductStock() + cartDTO.getProductNum();
+            product.setProductStock(result);
+            productRepository.save(product);
+        }
 
     }
 
