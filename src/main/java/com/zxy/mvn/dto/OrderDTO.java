@@ -1,15 +1,21 @@
 package com.zxy.mvn.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zxy.mvn.dataobject.OrderDetail;
 import com.zxy.mvn.enums.OrderStatusEnum;
 import com.zxy.mvn.enums.PayStatusEnum;
+import com.zxy.mvn.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /** 订单id. */
@@ -37,9 +43,11 @@ public class OrderDTO {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 修改时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

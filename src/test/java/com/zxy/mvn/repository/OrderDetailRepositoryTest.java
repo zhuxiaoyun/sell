@@ -28,7 +28,7 @@ public class OrderDetailRepositoryTest {
         orderDetail.setProductId("1");
         orderDetail.setProductName("粥");
         orderDetail.setProductIcon("xxx.png");
-        orderDetail.setProductNum(2);
+        orderDetail.setProductQuantity(2);
         orderDetail.setProductPrice(new BigDecimal(2.3));
 
         OrderDetail result = orderDetailRepository.save(orderDetail);

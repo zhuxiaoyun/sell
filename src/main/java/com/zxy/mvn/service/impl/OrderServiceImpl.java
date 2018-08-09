@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 
             //2. 计算订单总价
             orderAmount = product.getProductPrice()
-                    .multiply(new BigDecimal(orderDetail.getProductNum()))
+                    .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(orderAmount);
 
             //订单详情入库
@@ -76,8 +76,8 @@ public class OrderServiceImpl implements OrderService {
 
         //3. 写入订单数据库（orderMaster + orderDetail）
         OrderMaster orderMaster = new OrderMaster();
+        orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
@@ -85,9 +85,9 @@ public class OrderServiceImpl implements OrderService {
 
         //4. 扣库存
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
-                .map(e -> new CartDTO(e.getProductId(), e.getProductNum()))
+                .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
-        productService.increaseStock(cartDTOList);
+        productService.decreaseStock(cartDTOList);
 
         return orderDTO;
     }
@@ -143,7 +143,7 @@ public class OrderServiceImpl implements OrderService {
             throw new MvnException(ResultEnum.ORDER_DETAIL_EMPTY);
         }
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(e ->
-                new CartDTO(e.getProductId(), e.getProductNum())
+                new CartDTO(e.getProductId(), e.getProductQuantity())
         ).collect(Collectors.toList());
         productService.increaseStock(cartDTOList);
 

@@ -42,10 +42,10 @@ public class OrderServiceImplTest {
 
         OrderDetail o1 = new OrderDetail();
         o1.setProductId("123458");
-        o1.setProductNum(2);
+        o1.setProductQuantity(2);
         OrderDetail o2 = new OrderDetail();
         o2.setProductId("123457");
-        o2.setProductNum(3);
+        o2.setProductQuantity(3);
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
         orderDetailList.add(o1);

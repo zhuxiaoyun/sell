@@ -2,8 +2,8 @@ package com.zxy.mvn.controller;
 
 import com.zxy.mvn.dataobject.Product;
 import com.zxy.mvn.dataobject.ProductCategory;
-import com.zxy.mvn.service.impl.CategoryServiceImpl;
-import com.zxy.mvn.service.impl.ProductServiceImpl;
+import com.zxy.mvn.service.CategoryService;
+import com.zxy.mvn.service.ProductService;
 import com.zxy.mvn.utils.ResultVOUtil;
 import com.zxy.mvn.vo.ProductListVO;
 import com.zxy.mvn.vo.ProductVO;
@@ -26,10 +26,10 @@ import java.util.stream.Collectors;
 public class BuyerProductController {
 
     @Autowired
-    private ProductServiceImpl productService;
+    private ProductService productService;
 
     @Autowired
-    private CategoryServiceImpl categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/list")
     public ResultVO list() {
