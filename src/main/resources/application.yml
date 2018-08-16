@@ -17,3 +17,7 @@ server:
 wechat:
   mpAppId: wxb825d76e58564d2e
   mpAppSecret: 85748354ada864b498cd5b094098c041
+  mchId: 12121
+  mchKey: 11212
+  keyPath: /var/weixin_path
+  notifyUrl: http://emart.s1.natapp.cc/sell/pay/notify

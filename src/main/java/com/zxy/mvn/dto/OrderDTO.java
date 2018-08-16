@@ -1,11 +1,13 @@
 package com.zxy.mvn.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zxy.mvn.dataobject.OrderDetail;
 import com.zxy.mvn.enums.OrderStatusEnum;
 import com.zxy.mvn.enums.PayStatusEnum;
 import com.zxy.mvn.serializer.Date2LongSerializer;
+import com.zxy.mvn.utils.EnumUtil;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -51,4 +53,14 @@ public class OrderDTO {
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

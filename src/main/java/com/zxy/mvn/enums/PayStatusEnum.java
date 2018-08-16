@@ -1,9 +1,12 @@
 package com.zxy.mvn.enums;
 
+import lombok.Getter;
+
 /**
  * 支付状态
  */
-public enum PayStatusEnum {
+@Getter
+public enum PayStatusEnum implements CodeEnum{
     WAIT(0, "等待支付"),
     SUCCESS(1, "支付成功"),
     ;
@@ -11,14 +14,6 @@ public enum PayStatusEnum {
     private Integer code;
 
     private String message;
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 
     PayStatusEnum(Integer code, String message) {
         this.code = code;
