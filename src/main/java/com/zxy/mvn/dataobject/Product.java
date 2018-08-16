@@ -1,5 +1,8 @@
 package com.zxy.mvn.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zxy.mvn.enums.ProductStatusEnum;
+import com.zxy.mvn.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -43,4 +46,9 @@ public class Product {
     private Date createTime;
 
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 }

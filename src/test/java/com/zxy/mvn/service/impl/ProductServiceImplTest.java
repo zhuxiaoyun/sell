@@ -61,6 +61,14 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void findByCategoryType() {
+    public void offSale() {
+        Product result = productService.offSale("123457");
+        Assert.assertEquals(ProductStatusEnum.DOWN.getCode(), result.getProductStatus());
+    }
+
+    @Test
+    public void onSale() {
+        Product result = productService.onSale("123457");
+        Assert.assertEquals(ProductStatusEnum.UP.getCode(), result.getProductStatus());
     }
 }
