@@ -12,6 +12,9 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 127.0.0.1
+    port: 6379
 server:
   context-path: /sell
 wechat:
@@ -21,3 +24,6 @@ wechat:
   mchKey: 11212
   keyPath: /var/weixin_path
   notifyUrl: http://emart.s1.natapp.cc/sell/pay/notify
+
+projectUrl:
+  sell: http://emart.s1.natapp.cc
