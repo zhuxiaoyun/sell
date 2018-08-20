@@ -1,7 +1,9 @@
 package com.zxy.mvn.exception;
 
 import com.zxy.mvn.enums.ResultEnum;
+import lombok.Getter;
 
+@Getter
 public class MvnException extends RuntimeException {
 
     private Integer code;

@@ -24,6 +24,8 @@ wechat:
   mchKey: 11212
   keyPath: /var/weixin_path
   notifyUrl: http://emart.s1.natapp.cc/sell/pay/notify
+  templateId:
+    orderStatus: qd0J6Vzo_KG4aFMsIWMnyO8mrvw6uYaqifNl58goUig
 
 projectUrl:
   sell: http://emart.s1.natapp.cc

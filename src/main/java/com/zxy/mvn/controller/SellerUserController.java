@@ -35,6 +35,12 @@ public class SellerUserController {
     @Autowired
     private ProjectUrlConfig projectUrlConfig;
 
+    @GetMapping("/login_index")
+    public ModelAndView loginIndex(Map<String, Object> map) {
+        map.put("url", "/sell/seller/login?openid=123abc");
+        return new ModelAndView("/common/login", map);
+    }
+
     @GetMapping("/login")
     public ModelAndView login(@RequestParam("openid") String openid,
                               HttpServletResponse response,
@@ -70,7 +76,7 @@ public class SellerUserController {
             cookie.setMaxAge(0);
             CookieUtil.set(response, CookieConstant.TOKEN, null, 0);
         }
-        map.put("msg", ResultEnum.LOGOUT_SUCCESS);
+        map.put("msg", ResultEnum.LOGOUT_SUCCESS.getMessage());
         map.put("url", "/sell/seller/order/list");
         return new ModelAndView("/common/success", map);
     }
