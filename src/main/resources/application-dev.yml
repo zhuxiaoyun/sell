@@ -4,3 +4,6 @@ girl:
   cupSize: B
   age: 18
   context: "cupSize: ${girl.cupSize}, age: ${girl.age}"
+logging:
+  level:
+    com.zxy.mvn.dataobject.mapper: trace
